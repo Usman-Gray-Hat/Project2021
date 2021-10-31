@@ -1,0 +1,55 @@
+--====> Database <====--
+create database LaundryManagement
+use LaundryManagement
+
+--====> Creating Cloth Table <====-
+create table Cloth
+(
+Cloth_ID int primary key identity,
+Cloth_Name varchar(30),
+Cloth_Code varchar(20)
+)
+
+--====> Inserting Data In Cloth Table <====--
+insert into Cloth values('Shirt','SH')
+insert into Cloth values('T-Shirt','T-SH')
+insert into Cloth values('Jeans','JNS')
+insert into Cloth values('Coat','CT')
+insert into Cloth values('Shalwar','SHWR')
+insert into Cloth values('Kameez','KMZ')
+insert into Cloth values('Bed Sheet','BD-SHT')
+insert into Cloth values('Blanket','BLKT')
+insert into Cloth values('Trouser','TRSR')
+insert into Cloth values('Curtains','CRTS')
+
+
+
+
+--====> Creating Service Table <====-
+create table Service
+(
+Service_ID int primary key identity,
+Service_Type varchar(30),
+)
+
+--====> Inserting Data In Service Table <====--
+insert into Service values('Press')
+insert into Service values('Washing')
+insert into Service values('Dry-&-Cleans')
+insert into Service values('Alteration')
+
+
+--====> Creating Prize Table <====-
+create table Prize
+(
+Prize_ID int primary key identity,
+Service_Charges int,
+Delivery_Charges int,
+Total_Net int,
+Cloth_ID_FK int foreign key references Cloth (Cloth_ID),
+Service_ID_FK int foreign key references Service (Service_ID)
+)
+
+select * from Cloth
+select * from Service
+select * from Prize
