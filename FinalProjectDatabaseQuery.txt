@@ -1,0 +1,47 @@
+create database onlinemarketing
+use onlinemarketing
+
+--Admin Table--
+create table adminn
+(
+ad_id int primary key identity,
+ad_name nvarchar(50) not null unique,
+ad_password nvarchar(50) not null unique
+)
+insert into adminn values('AbdulRehman','abc1234')
+insert into adminn values('UsmanHameed','abc1790')
+insert into adminn values('BilalAmir','abc7860')
+
+select * from adminn
+
+--Category Table--
+create table cateogory
+(
+cat_id int primary key identity,
+cat_name nvarchar(50) not null,
+cat_image nvarchar(max) not null,
+ad_id_fk int foreign key references adminn(ad_id)
+)
+
+--User Table--
+create table tbl_user
+(
+u_id int primary key identity,
+u_name nvarchar(50) not null,
+u_image nvarchar(max) not null,
+u_contact nvarchar(50) not null,
+u_email nvarchar(50) not null
+)
+
+
+--Product Table--
+create table product
+(
+pro_id int primary key identity,
+pro_name nvarchar(50) not null,
+pro_image nvarchar(max) not null,
+pro_price int,
+pro_desc nvarchar(max),
+cat_id_fk int foreign key references cateogory(cat_id),
+pro_user_id_fk int foreign key references tbl_user(u_id)
+)
